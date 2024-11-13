@@ -7,7 +7,7 @@ import {RecoveryPasswordComponent} from "./components/recovery-password/recovery
 import {StartComponent} from "./components/start/start.component";
 import {HomeComponent} from "./components/home/home.component";
 import {ProfileComponent} from "./components/profile/profile.component";
-
+import { CalificacionesComponent } from './components/calificaciones/calificaciones.component';
 
 export const routes: Routes = [
   { path: '', component: StartComponent, canActivate: [authGuard] }, // Usa el guard para redirigir a usuarios no autenticados
@@ -15,6 +15,7 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [authGuard]},
   {path: 'recovery', component: RecoveryPasswordComponent, canActivate: [authGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [homeGuard] },
+  {path: 'calificiones', component: CalificacionesComponent, canActivate: [homeGuard]},
   { path: '**', redirectTo: '' }, // Redirige a la página de inicio si la ruta no se encuentra
 
 ];

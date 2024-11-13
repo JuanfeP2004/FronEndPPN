@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Calificaciones</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="sidebar">
+    <div class="profile-summary">
+      <img src="/assets/images/img/profile.jpg" alt="Foto de perfil" class="profile-pic">
+      <h3>Mis Calificaciones</h3>
+    </div>
+    <nav>
+      <button (click)="showSection('lista')">
+        <i class="fas fa-list"></i> Lista de Calificaciones
+      </button>
+      <button (click)="showSection('nueva')">
+        <i class="fas fa-plus"></i> Nueva Calificación
+      </button>
+      <button routerLink="/Home">
+        <i class="fas fa-home"></i> Volver al Inicio
+      </button>
+    </nav>
+  </div>
+
+  <div class="content">
+    <!-- Sección de Lista de Calificaciones -->
+    <section id="lista" [ngClass]="{'hidden': seccionActiva !== 'lista'}">
+      <h2>Mis Calificaciones</h2>
+      <div class="table-container" *ngIf="calificaciones.length > 0">
+        <table>
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Descripción</th>
+              <th>Calificación</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let calificacion of calificaciones">
+              <td>{{ calificacion.titulo }}</td>
+              <td>{{ calificacion.descripcion }}</td>
+              <td>
+                <span class="stars">
+                  {{ '⭐'.repeat(calificacion.nota) }}
+                </span>
+              </td>
+              <td>{{ calificacion.fecha | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <button class="btn btn-danger" (click)="eliminarCalificacion(calificacion.id)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="empty-state" *ngIf="calificaciones.length === 0">
+        <i class="fas fa-book fa-3x"></i>
+        <p>No hay calificaciones todavía. ¡Agrega una!</p>
+      </div>
+    </section>
+
+    <!-- Sección de Nueva Calificación -->
+    <section id="nueva" [ngClass]="{'hidden': seccionActiva !== 'nueva'}">
+      <h2>Nueva Calificación</h2>
+      <form (ngSubmit)="agregarCalificacion()">
+        <div class="form-group">
+          <label for="titulo">Título del Documento/Libro</label>
+          <input 
+            type="text" 
+            id="titulo" 
+            name="titulo" 
+            [(ngModel)]="nuevaCalificacion.titulo" 
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="descripcion">Descripción/Reseña</label>
+          <textarea 
+            id="descripcion" 
+            name="descripcion" 
+            [(ngModel)]="nuevaCalificacion.descripcion" 
+            rows="5"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="nota">Calificación</label>
+          <select 
+            id="nota" 
+            name="nota" 
+            [(ngModel)]="nuevaCalificacion.nota" 
+            required>
+            <option value="1">1 ⭐</option>
+            <option value="2">2 ⭐⭐</option>
+            <option value="3">3 ⭐⭐⭐</option>
+            <option value="4">4 ⭐⭐⭐⭐</option>
+            <option value="5">5 ⭐⭐⭐⭐⭐</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-success">
+            <i class="fas fa-save"></i> Guardar
+          </button>
+          <button type="button" class="btn btn-danger" (click)="showSection('lista')">
+            <i class="fas fa-times"></i> Cancelar
+          </button>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>
+</body>

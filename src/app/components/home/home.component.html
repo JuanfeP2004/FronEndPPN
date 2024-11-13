@@ -4,14 +4,163 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UPB Docs</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background-color: #004a7c;
+      color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .nav a:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .logout {
+      background: none;
+      border: 1px solid white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .logout:hover {
+      background-color: white;
+    }
+
+    .logout a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .logout:hover a {
+      color: #004a7c;
+    }
+
+    .main {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .search-section {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .search-section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #004a7c;
+    }
+
+    .search-section p {
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .search-bar {
+      display: flex;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 1rem;
+      border: 2px solid #004a7c;
+      border-radius: 4px 0 0 4px;
+      font-size: 1rem;
+    }
+
+    .search-bar button {
+      padding: 1rem 2rem;
+      background-color: #004a7c;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      font-size: 1rem;
+      color: white;
+    }
+
+    .content-section {
+      background-color: #f5f5f5;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+
+    .tabs {
+      margin-bottom: 1rem;
+    }
+
+    .tab-button {
+      padding: 0.8rem 1.5rem;
+      background-color: #004a7c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .tab-content {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 4px;
+      min-height: 200px;
+    }
+  </style>
 </head>
 <body>
 <header class="header">
-  <div class="logo">UPB Docs</div>
+  <div class="logo">
+    <img src="C:\Users\juan5\OneDrive\Escritorio\Universidad 2.0\FronEndPPN\images\UPB.png" alt="Logo UPB">
+    <div>UPB Docs</div>
+  </div>
   <nav class="nav">
-    <!--<a routerLink="/universidades">Universidades</a>-->
-    <!--<a routerLink="/libros">Libros</a>-->
     <a routerLink="/documentos">Mis Documentos</a>
+    <a routerLink="/calificaciones">Mis calificaciones</a>
     <a routerLink="/profile">Perfil</a>
   </nav>
   <button class="logout"><a (click)="logout()">Logout</a></button>
@@ -19,45 +168,23 @@
 <main class="main">
   <section class="search-section">
     <h1>Seamos más inteligentes juntos</h1>
-    <p>Encuentre notas de estudio mejor calificadas de estudiantes que toman los mismos cursos que usted.</p>
+    <p>Encuentra aquí las notas de estudio mejor calificadas de estudiantes que toman los mismos cursos que usted.</p>
     <div class="search-bar">
-      <input type="text" placeholder="  Busca cursos, libros o documentos">
+      <input type="text" placeholder="Busca cursos, libros o documentos">
       <button>🔍</button>
     </div>
   </section>
 
   <section class="content-section">
     <div class="tabs">
-
-      <!--<button class="tab-button" data-tab="universidades">Universidades</button>-->
-
-
       <button class="tab-button" data-tab="documentos">Lista de Documentos</button>
-
-
-      <!--<button class="tab-button" data-tab="examenes">Examenes</button>-->
-
-
-      <!--<button class="tab-button" data-tab="libros">Libros</button>-->
-
     </div>
     <div class="content-div">
-      <div class="tab-content active 1" id="universidades" >
-        <div class="item-card"></div>
-      </div>
-      <div class="tab-content 2" id="documentos"    >
-        <div class="item-card"></div>
-      </div>
-      <div class="tab-content 3" id="examenes"      >
-        <div class="item-card"></div>
-      </div>
-      <div class="tab-content 4" id="libros"        >
+      <div class="tab-content active" id="documentos">
         <div class="item-card"></div>
       </div>
     </div>
   </section>
-
 </main>
 </body>
-
 </html>
